@@ -1,0 +1,10 @@
+.container {
+    max-width: 85%;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+}
+

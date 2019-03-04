@@ -1,0 +1,16 @@
+{
+  "name": "suspect",
+  "version": "1.0.0",
+  "description": "a drop shipping service for wigs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd server && node app\" \"cd client && npm start\""
+  },
+  "author": "Danilo Vladicic",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "npm": "^6.8.0"
+  }
+}
