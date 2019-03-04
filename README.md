@@ -1,5 +1,5 @@
 # ShoppingCart
-Node/expressjs backend with react frontend. The sites checkout is fully integerated with paypal payments and a checkout.  Only the webhook listener needs to be done for updating the db after purchase.
+Node/expressjs backend with react frontend. The sites checkout is fully integerated with paypal payments.  Only the webhook listener needs to be done for updating the db after purchase.
 
 ## Server
   1) Routes: Folder contains all the app routes.
