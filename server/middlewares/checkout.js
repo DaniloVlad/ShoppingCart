@@ -94,9 +94,6 @@ const postCheckout = (req, res, next) => {
             paypalOrder(payer, orderSub)
             .then((details) => {
                 let orderID = details.result.id;
-                paypalCapture(orderID)
-                .then(resp => console.log(resp))
-                .catch(err => console.error('Couldnt capture order!'));
                 var link = "";
                 console.log(details);
                 for(x in details.result.links) {

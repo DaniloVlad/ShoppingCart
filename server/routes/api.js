@@ -26,6 +26,8 @@ router.get('/register', Register.getRegister);
 
 router.post('/register', Register.postRegister);
 
+router.get('/logout', Register.logout);
+
 router.get('/', Categories.getMenu);
 
 module.exports = router;
