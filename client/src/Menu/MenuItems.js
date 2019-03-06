@@ -8,21 +8,19 @@ const MenuItems = ({menu_items}) => {
     else {
         return menu_items.map((value, index) => {
                return (
-                   <div key={index} className="menu-item">
-                        <div className="menu-content">
-                            <Link className="menu-link" to={"/categories/"+value.name}>{value.name}</Link>
+                   <div key={index} className={value.subCategories[0] === null ? "nav-item" : "nav-item submenu"}>
+                        <Link className="nav-link" to={"/categories/"+value.name}>
+                            {value.name+" "}
                             {value.subCategories[0] === null ? "" : <i className="fas fa-caret-down"></i> }
-                        </div>
+                        </Link>
+                        
+                        
     
-                        <div className="dropdown-submenu"> 
+                        <div className="dropdown"> 
                         {
                             value.subCategories.map((value, index) => {
                                 if(value === null) return;
-                                return (
-                                    <div key={value} className="submenu-item">
-                                        <Link className="menu-link" to={"/products/"+value}>{value}</Link>
-                                    </div>
-                                );
+                                return <Link className="nav-link" to={"/products/"+value}>{value}</Link>
                             })
                         }
     
@@ -35,5 +33,6 @@ const MenuItems = ({menu_items}) => {
         
     
 }
+
 
 export default MenuItems;

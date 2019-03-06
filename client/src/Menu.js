@@ -24,24 +24,21 @@ class Menu extends React.Component {
             return (
             
                     <div className="nav">  
-                        <div className="dropdown-menu">
-                            <div className="menu-item">
-                                <div className="menu-content">
-                                    <Link className="menu-link" to="/">Home</Link>
-                                </div>
+                        
+                            <div className="nav-item">
+                                <Link className="nav-link" to="/">Home</Link>
                             </div>
                             <MenuItems menu_items={this.state.menu_items} />
-                            <div className="menu-item">
-                                <div className="menu-content">
-                                    <Link className="menu-link" to="/cart/view">Cart: {cart.length}</Link>
-                                </div>
-                                <div className="dropdown-submenu">
+
+                            <div className="nav-item submenu">
+                                <Link className="nav-link" to="/cart/view">Cart: {cart.length}</Link>
+                                <div className="dropdown">
                                     {
                                     cart === undefined || cart.length === 0 ? <div></div> : JSON.stringify(cart)
                                     }
                                 </div>
                             </div>
-                        </div>
+                        
                         
                     </div>
             );

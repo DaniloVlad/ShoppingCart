@@ -1,69 +1,62 @@
 .nav {
     width: 65%;
-    height: 60px;
     margin: 0 auto;
-    border: 1px solid #676767;
-}
-
-.dropdown-menu {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
     display: flex;
-}
-
-.menu-link {
-    padding: 8px 12px;
-    text-decoration: none;
-    color: #000;
-}
-.menu-content:hover .fas {
-    color: #008080;
-}
-.menu-content:hover .menu-link {
-    color: #008080;
-}
-.menu-item {
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #000;
+  }
+  
+  .nav-item {
     position: relative;
-    display: inline-block;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-}
-.menu-item:hover .dropdown-submenu {
-    display: block;
-    margin-left: -1px;
-}
-
-.menu-content {
-    height: 100%;
-    line-height: 4;
-    border-right: 1px solid #676767;
-}
-
-.menu-item:last-child > .menu-content {
-    border-right: 0px;
-}
-
-.dropdown-submenu {
-    display: none;
-    padding: 0px;
-    text-align: center;
     background-color: #fff;
-    border: 1px solid #676767;
-}
-
-.submenu-item {
-    padding: 12px 0px;
-    border-bottom: 1px solid #676767;
-}
-.submenu-item:last-child {
+    width: 100%;
+    border-right: 1px solid #000;
+  }
+  
+  .nav-link {
+    padding: 12px 18px;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+    box-sizing:border-box;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    color: #3cc8af;
+  }
+  .nav-item:last-child {
+    border-right: 0px;
+  }
+  
+  .dropdown {
+    margin-left: -1px;
+    margin-right: -1px;
+    left: 0;
+    width: 100%;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #000;
+  }
+  
+  .dropdown .nav-link {
+    display:block;
+    border-bottom: 1px solid #000;
+    border-right: 0px;  
+  }
+  .dropdown:last-child {
     border-bottom: 0px;
-}
-
-.submenu-item:hover .menu-link {
-    color: #008080;
-}
+    
+  }
+  
+  
+  .submenu:hover .dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+  
+  

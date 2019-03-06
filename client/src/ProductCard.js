@@ -10,18 +10,30 @@ class ProductCard extends React.Component {
             product_id: id,
             product_name: name,
             product_description: description,
-            product_variant: 0,
+            product_variant: default_variant,
             product_type: type,
             quantity: 1
         };
 
         return (
-            <div className='product-card'>
-                <h2>{name+": "} <small>{default_variant}</small></h2>
-                <p>Price: ${price.toFixed(2)}</p>
-                <p>Description: {description.substring(0, 34)+'...'}</p>
-                <AddToCart product = {product} updateCart={this.props.updateCart}>Quick Add</AddToCart>
-                <Link to={'/product/'+id}><button>View</button></Link>
+            <div className='card'>
+                <img className="card-image" src={"https://via.placeholder.com/300x150.png?text="+name} />
+                <h3 class="card-title">
+                    {name+": "} <small>{default_variant}</small>
+                </h3>
+                <div class="card-body">
+                    <p>
+                        {description.substring(0, 128)+'...'}
+                    </p>
+                    <hr class="price-break"/>
+                    <p class="price">
+                        Price: ${price.toFixed(2)}
+                    </p>
+                    <div class="btn-group">
+                        <Link to={'/product/'+id}><button class="btn view">View</button></Link>
+                        <AddToCart product = {product} updateCart={this.props.updateCart}>Quick Add</AddToCart>
+                    </div>
+                </div>              
             </div>
         )
     }

@@ -31,7 +31,7 @@ class AddToCart extends React.Component {
         if(this.props.product !== prevProps.product) this.setState(this.props.product)
     }
     render() {
-        return <button onClick={this.addToCart}>{this.props.children}</button>
+        return <button className="btn addToCart" onClick={this.addToCart}>{this.props.children}</button>
     }
 }
 

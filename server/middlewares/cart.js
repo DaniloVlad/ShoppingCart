@@ -64,11 +64,12 @@ const addToCart = (req, res, next) => {
             var data = results[0];
             data.variants = JSON.parse(data.variants);
             prod.product_description = data.description;
-
+            console.log(data);
+            
             if(prod.product_type !== data.type) 
                 return next('product_id does not match product_type')
 
-            else if(prod.product_variant === 0) {
+            else if(prod.product_variant === data.default_variant) {
                 prod.price = roundPrice(data.price);
                 req.session.cart.push(prod);
                 return res.json({suc: 'Successfully added product to cart!'})

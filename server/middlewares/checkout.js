@@ -1,9 +1,11 @@
+const crypto = require('crypto');
 const {shippingCost, subTotal, testEmail, roundPrice} = require('./helper/cart');
 const paypalOrder = require('./order');
 const paypalCapture = require('./payment');
 const state_codes = require('./states');
 const {Payer} = require('./payer');
 const Orders = require('../models/orders');
+const {addUser} = require('../models/users');
 
 const preCheck = (req, res, next) => {
     if(req.session.cart === undefined || req.session.cart.length === 0)
@@ -49,11 +51,15 @@ const createPayer = (req, res, next) => {
     }
     else {
         if(address_2.length === 0) address_2 = null;
+        let tmpPass = crypto.randomBytes(16);  //email temp password to user
         req.payer = {};
         req.payer = new Payer(first_name, last_name, email, address_1, address_2, city, state, zip,  "US");
-        console.log('CREATED PAYER')
-        console.log(req.payer)
-        return next();
+        //dont give them a choice
+        if(!req.session.id || !req.session.user || !req.session.email)
+            addUser({first_name, last_name, email, tmpPass})
+            .then(response => console.log(resposne))
+            .catch(err => console.error('Couldn\'t create user'));
+        else next(); //if user exists
     }
 }
 
@@ -119,4 +125,9 @@ const postCheckout = (req, res, next) => {
 
 }
 
-module.exports = {preCheck, getCheckout, postCheckout, createPayer}
+module.exports = {
+    preCheck, 
+    getCheckout, 
+    postCheckout, 
+    createPayer
+}

@@ -9,10 +9,11 @@ class Product extends React.Component {
             name: "", 
             type: "", 
             description: "",
+            default_variant: "",
             price: 0, 
             product_variants: [], 
             err: "",
-            selected : {price: 0, variant: 0, quantity: 1}
+            selected : {price: 0, variant: "", quantity: 1}
         };
         
         this.getProductDetails = this.getProductDetails.bind(this);
@@ -35,11 +36,12 @@ class Product extends React.Component {
                     name: result.name, 
                     description: result.description,
                     type: result.type, 
+                    default_variant: result.default_variant,
                     type_name: result.type_name,
                     price: result.price, 
                     product_variants: result.variants, 
                     err: "",
-                    selected: {price: result.price, variant: 0,  quantity:1}
+                    selected: {price: result.price, variant: result.default_variant,  quantity:1}
                 }, ()=> console.log(this.state));
             }
         })
@@ -53,10 +55,17 @@ class Product extends React.Component {
     
     updateListedPrice(event) {
         event.preventDefault();
-        let {name, price} = this.state.product_variants[event.target.value];
-        let newState = this.state;
-        this.newState.selected.price = price;
-        this.newState.selected.name = name;
+        var sel = event.target.value;
+        var newState = this.state;
+        if(sel === this.state.default_variant) {
+            newState.selected.variant = this.state.default_variant;
+            newState.selected.price = this.state.price;
+        }
+        else {
+            let {name, price} = this.state.product_variants[sel];
+            newState.selected.variant = name;
+            newState.selected.price = price;
+        }
         this.setState(newState, () => console.log(this.state));
     }
     
@@ -70,7 +79,7 @@ class Product extends React.Component {
     }
     
     render() {
-        let {id, name, description, type, type_name, err, product_variants} = this.state;
+        let {id, name, description, default_variant,type, type_name, err, product_variants} = this.state;
         let { price, quantity, variant} = this.state.selected;
         if(err) 
             return(
@@ -93,7 +102,7 @@ class Product extends React.Component {
                     <input onChange={this.updateQuantity} name="quantity" defaultValue="1" type="number" max="5" min="1" step="1" />
                     <p>Description: {description}</p>
                     <select onChange={this.updateListedPrice}>
-                        <option value={0}>{type_name}</option>
+                        <option value={default_variant}>{default_variant}</option>
                         {product_variants === undefined || product_variants.length === 0 ? 
                             <div></div>
                         :
