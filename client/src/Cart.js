@@ -80,9 +80,9 @@ class Cart extends React.Component {
                 }
                     <h2>View Cart: </h2>
                     <hr />
-                    <p>You're cart is empty!</p>
+                    <p>You\'re cart is empty!</p>
                 </div>
-            )
+            );
         return(
             <div>
                 {

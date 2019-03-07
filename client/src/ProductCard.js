@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import AddToCart from './AddToCart';
 
+// ISOLATED DESIGN: https://jsfiddle.net/v3chdqy0/10/
 class ProductCard extends React.Component {
      
     render() {
@@ -25,7 +26,7 @@ class ProductCard extends React.Component {
                     <p>
                         {description.substring(0, 128)+'...'}
                     </p>
-                    <hr class="price-break"/>
+                    <hr class="sleek-break"/>
                     <p class="price">
                         Price: ${price.toFixed(2)}
                     </p>

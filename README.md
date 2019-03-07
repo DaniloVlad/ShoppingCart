@@ -13,6 +13,8 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 
 ![Image 1](screenshots/Pic1.png)
 
+![Image 6](screenshots/Pic6.png)
+
 ![Image 2](screenshots/Pic2.png)
 
 ![Image 4](screenshots/Pic4.png)

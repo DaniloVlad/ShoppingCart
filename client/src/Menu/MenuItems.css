@@ -1,17 +1,18 @@
 .nav {
-    width: 65%;
-    margin: 0 auto;
+    margin: 10px auto;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    border: 1px solid #000;
+    border: 1px solid #ddd;
   }
   
   .nav-item {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
     width: 100%;
-    border-right: 1px solid #000;
+    border-right: 1px solid #ddd;
   }
   
   .nav-link {
@@ -36,15 +37,16 @@
     margin-left: -1px;
     margin-right: -1px;
     left: 0;
-    width: 100%;
+    right: 0;
+    top: 100%;
     display: none;
     background-color: #fff;
-    border: 1px solid #000;
+    border: 1px solid #ddd;
   }
   
   .dropdown .nav-link {
     display:block;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #ddd;
     border-right: 0px;  
   }
   .dropdown:last-child {

@@ -58,11 +58,8 @@ class App extends Component {
     render() {
         const {settings, menu, cart} = this.state;
         return (
-            <div className="container">
-                
+            <div className="container">             
                 <h1 className="header">{settings.name}</h1>
-                
-
                 <Router>
                     <div>
 

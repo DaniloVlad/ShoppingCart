@@ -49,7 +49,7 @@ class Types extends React.Component {
         else {
             return (
                 <div>
-                    <h2>Here we show a products of specific type: {this.state.type_name}</h2>
+                    {/* <h2>Here we show a products of specific type: {this.state.type_name}</h2> */}
                     <div className="product-grid">
                         {
                         this.state.variants.map((value, index) => {

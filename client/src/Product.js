@@ -1,6 +1,7 @@
 import React from 'react';
 import AddToCart from './AddToCart';
-
+import './Product.css'
+//ISOLATED DESIGN: https://jsfiddle.net/crw1u6xs/126/
 class Product extends React.Component {
     constructor(props) {
         super(props);
@@ -95,23 +96,41 @@ class Product extends React.Component {
                 quantity: quantity
             };
             return (
-                <div>
-                    <h2>Product: {name} </h2>
-                    <p>Type: {type_name}</p>
-                    <p>Price: ${price.toFixed(2)}</p>
-                    <input onChange={this.updateQuantity} name="quantity" defaultValue="1" type="number" max="5" min="1" step="1" />
-                    <p>Description: {description}</p>
-                    <select onChange={this.updateListedPrice}>
-                        <option value={default_variant}>{default_variant}</option>
-                        {product_variants === undefined || product_variants.length === 0 ? 
-                            <div></div>
-                        :
-                            product_variants.map((key, index) => {
-                                return <option key={index} value={index}>{key.name}</option>
-                            })
-                        }
-                    </select>
-                    <AddToCart product={product} updateCart={this.props.updateCart}>Add to Cart</AddToCart>
+                <div className="product-view">
+                    <img className="product-img" src="https://via.placeholder.com/450x225.png?text=Product 1" alt="" />
+                    <div className="product-info">
+                        <h3 className="product-title">
+                            { name + " - " + type_name + " - " + variant } 
+                        </h3>
+                        
+                        <div className="product-body">
+                            <p className="product-desc">
+                                { description }  
+                            </p>
+                            <div className="form-group">
+                                <div className="form-item">
+                                    <label for="variants">Length: </label>
+                                    <select className="variants" onChange={this.updateListedPrice}>
+                                        <option value={default_variant}>{default_variant}</option>
+                                        { product_variants === undefined || product_variants.length === 0 ? 
+                                            ""
+                                        :
+                                            product_variants.map((key, index) => {
+                                                return <option key={index} value={index}>{key.name}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="form-item">
+                                    <label for="variants">Quantity: </label>
+                                    <input className="ranger" onChange={this.updateQuantity} name="quantity" defaultValue="1" type="number" max="5" min="1" step="1" />
+                                </div>
+                                <div className="form-item">
+                                    <AddToCart className="btn-block" product={product} updateCart={this.props.updateCart}>Add to Cart</AddToCart>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
                 </div>
             );
         }

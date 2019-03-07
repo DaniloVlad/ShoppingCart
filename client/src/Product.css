@@ -1,0 +1,64 @@
+.product-view {
+    border: 1px solid #ddd;
+    display: inline-block;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.product-img {
+    width: 33%;
+    height: 225px;
+    float: left;
+}
+  
+.product-info {
+float: right;
+padding-left: 15px;
+width: 67%;
+}
+
+.product-title {
+    font-weight: lighter;
+    display: block;
+    text-decoration: underline;
+    text-decoration-color: #666;
+}
+
+.product-body {
+display: inline;
+}
+
+.product-desc {
+width: 450px;
+float: left;
+}
+
+.form-group {
+    width: 200px;
+    height: 180px;
+    float: right;
+}
+
+.form-item {
+    display: block;
+    width: 100%;
+    padding-bottom: 8px;
+}
+
+.range {
+    width: 100%;
+    display: block;
+}
+
+.variants {
+    width: 100%;
+    display: block;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+  
