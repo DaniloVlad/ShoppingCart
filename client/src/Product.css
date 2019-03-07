@@ -13,30 +13,32 @@
 }
   
 .product-info {
-float: right;
-padding-left: 15px;
-width: 67%;
+    float: right;
+    padding-left: 15px;
+    width: 67%;
 }
 
 .product-title {
     font-weight: lighter;
+    width: 67%;
     display: block;
     text-decoration: underline;
     text-decoration-color: #666;
 }
 
 .product-body {
-display: inline;
+    display: inline;
 }
 
 .product-desc {
-width: 450px;
+width: 67%;
 float: left;
 }
 
 .form-group {
-    width: 200px;
-    height: 180px;
+    width: 33%;
+    padding: 5px;
+    margin-top: -20px;
     float: right;
 }
 
@@ -49,11 +51,13 @@ float: left;
 .range {
     width: 100%;
     display: block;
+    margin-top: 8px;
 }
 
 .variants {
     width: 100%;
     display: block;
+    margin-top: 8px;
 }
 
 .btn-block {
@@ -61,4 +65,11 @@ float: left;
     width: 100%;
 }
 
-  
+.product-price {
+    display: block;
+    width: 100%;
+}
+
+.price-tag {
+    float: right;
+}

@@ -109,6 +109,9 @@ class Product extends React.Component {
                             </p>
                             <div className="form-group">
                                 <div className="form-item">
+                                    <p className="product-price">Price: <span class="price-tag">{"$ " + price}</span></p>
+                                </div>
+                                <div className="form-item">
                                     <label for="variants">Length: </label>
                                     <select className="variants" onChange={this.updateListedPrice}>
                                         <option value={default_variant}>{default_variant}</option>
@@ -123,7 +126,7 @@ class Product extends React.Component {
                                 </div>
                                 <div className="form-item">
                                     <label for="variants">Quantity: </label>
-                                    <input className="ranger" onChange={this.updateQuantity} name="quantity" defaultValue="1" type="number" max="5" min="1" step="1" />
+                                    <input className="range" onChange={this.updateQuantity} name="quantity" defaultValue="1" type="number" max="5" min="1" step="1" />
                                 </div>
                                 <div className="form-item">
                                     <AddToCart className="btn-block" product={product} updateCart={this.props.updateCart}>Add to Cart</AddToCart>
