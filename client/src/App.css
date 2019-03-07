@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: sans-serif;
-  }
+}
 
 .container {
     max-width: 85%;
@@ -92,6 +92,7 @@
   height: 1px;
   background-color: #ddd;
 }
+
 .price {
   text-align: right;
 }

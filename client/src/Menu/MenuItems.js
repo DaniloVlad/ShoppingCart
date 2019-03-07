@@ -20,7 +20,7 @@ const MenuItems = ({menu_items}) => {
                         {
                             value.subCategories.map((value, index) => {
                                 if(value === null) return;
-                                return <Link className="nav-link" to={"/products/"+value}>{value}</Link>
+                                return <Link className="nav-link nav-cart" to={"/products/"+value}>{value}</Link>
                             })
                         }
     
