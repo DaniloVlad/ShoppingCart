@@ -5,7 +5,9 @@ const paypalCapture = require('./payment');
 const state_codes = require('./states');
 const {Payer} = require('./payer');
 const Orders = require('../models/orders');
-const {addUser} = require('../models/users');
+const User = require('../models/users');
+const emailClient = require('./email');
+
 
 const preCheck = (req, res, next) => {
     if(req.session.cart === undefined || req.session.cart.length === 0)
@@ -14,7 +16,6 @@ const preCheck = (req, res, next) => {
 }
 
 const getCheckout = (req, res, next) => {
-    console.log('Returning checkout')
     let cost = subTotal(req.session.cart);
     let shipping = shippingCost(cost);
     return res.json({cart: req.session.cart, shippingCost: shipping, itemCost: cost});
@@ -51,22 +52,42 @@ const createPayer = (req, res, next) => {
     }
     else {
         if(address_2.length === 0) address_2 = null;
-        let tmpPass = crypto.randomBytes(16);  //email temp password to user
         req.payer = {};
         req.payer = new Payer(first_name, last_name, email, address_1, address_2, city, state, zip,  "US");
-        //dont give them a choice
-        if(!req.session.id || !req.session.user || !req.session.email)
-            addUser({first_name, last_name, email, tmpPass})
-            .then(response => console.log(resposne))
-            .catch(err => console.error('Couldn\'t create user'));
-        else next(); //if user exists
+        User.checkEmail(email)
+        .then((results) => {
+            if(results.length === 1) 
+                return next(); //email already registered
+            else {
+                let user = {first_name, last_name, email};
+                let tmpPass = crypto.randomBytes(16);  //email temp password to user
+                const hmac = crypto.createHmac('sha256', 'bighiddensecret');
+                user.password = hmac.update(tmpPass).digest('hex');
+
+                User.addUser(user)
+                .then((response) => {
+                    const emailString = `New account for wigx.\nEmail: ${email}\nPassword: ${tmpPass}`
+                    emailClient.sendMail(email, 'New Account!', emailString)
+                    .then((response) => {
+                        console.log(response);
+                        return next();  //email sent!
+                    })
+                    .catch((err) => {
+                        console.log('couldnt send email :(')
+                        return next(); //still proceed with checkout
+                    })
+                })
+                .catch(err => next('Some error occured!'));
+            }
+        })
+        
+            
     }
 }
 
 const postCheckout = (req, res, next) => {
 
     let payer = req.payer;
-    console.log(payer)
 
     let cost = subTotal(req.session.cart);
     let shipping = shippingCost(cost);

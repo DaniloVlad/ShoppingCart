@@ -16,13 +16,13 @@ router.use('/product', product);
 
 router.use('/cart', cart);
 
-router.use('/category', categories)
+router.use('/category', categories);
 
-router.get('/login', Register.getLogin);
+router.use('/checkout', checkout);
+
+router.get(['/register', '/login'], Register.getRegister);
 
 router.post('/login', Register.postLogin);
-
-router.get('/register', Register.getRegister);
 
 router.post('/register', Register.postRegister);
 

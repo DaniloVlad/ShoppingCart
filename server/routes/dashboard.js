@@ -14,11 +14,16 @@ router.use((req, res, next) => {
 
 
 router.get('/', (req, res, next) => {
+    let menu = ['orders', 'account settings'];
+    if(req.session.role === 'Admin') 
+        menu.concat(['users', 'manage orders', 'email', 'products', 'site settings'])
     return res.json({name: req.session.name, email: req.session.email});
 });
 
 router.use(order);
 
-
+//TO-DO:
+// router.use('/account'); 
+// router.use(admin);
 
 module.exports = router;
