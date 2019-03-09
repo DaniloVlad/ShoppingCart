@@ -1,35 +1,7 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
-
-
-class CartItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = props.details;
-
-        this.updateQunatity = this.updateQunatity.bind(this);
-    }
-
-    updateQunatity() {
-        //post remove from cart
-    }
-    
-    render() {
-        var {product_name, product_id, product_description, product_variant, product_type, quantity, price} = this.state;
-        return (
-            <div>
-                <h4>{product_name}: {product_variant}</h4>
-                <p>Description: <i>{product_description}</i></p>
-                <p>Type: {product_type}</p>
-                <input name="quantity" defaultValue={quantity} type="number" max="5" min="1" step="1" />
-                <p>Cost: <b>{price}</b></p>
-                <hr />
-            </div>
-            
-            )
-
-    }
-}
+import CartItem from './Cart/CartItem';
+import EmptyCart from './Cart/EmptyCart';
 
 class Cart extends React.Component {
     constructor(props) {
@@ -70,41 +42,25 @@ class Cart extends React.Component {
 
     render() {
         if(this.state.cart === undefined || this.state.cart.length === 0 || this.state.err !== undefined)
+            return <EmptyCart />
+        else 
             return(
                 <div>
-                    {
-                    this.state.token === undefined || this.state.payerID === undefined || this.state.token.length === 0 || this.state.payerID.length === 0 ?
-                        <div></div>
-                    :
-                        <div>Successfully created order! {this.state.token}</div>
-                }
                     <h2>View Cart: </h2>
                     <hr />
-                    <p>You\'re cart is empty!</p>
+                    {
+                        this.state.cart.map((value, index) => <CartItem key={index} details={value} />)
+                    }
+                    <hr />
+                    <p>Sub Total: {this.state.itemCost.toFixed(2)} </p>
+                    <p>Shipping Cost: {this.state.shippingCost.toFixed(2)} </p>
+                    <hr />
+                    <p>Total: { (this.state.itemCost + this.state.shippingCost).toFixed(2) }</p>
+                    <Link to='/cart/checkout'><button>Checkout</button></Link>
+                    <button onClick={this.clearCart}>Clear Cart</button>
                 </div>
-            );
-        return(
-            <div>
-                {
-                    this.state.token === undefined || this.state.payerID === undefined || this.state.token.length === 0 || this.state.payerID.length === 0 ?
-                        <div></div>
-                    :
-                        <div>Successfully created order!</div>
-                }
-                <h2>View Cart: </h2>
-                <hr />
-                {
-                    this.state.cart.map((value, index) => <CartItem key={index} details={value} />)
-                }
-                <hr />
-                <p>Sub Total: {this.state.itemCost.toFixed(2)} </p>
-                <p>Shipping Cost: {this.state.shippingCost.toFixed(2)} </p>
-                <hr />
-                <p>Total: { (this.state.itemCost + this.state.shippingCost).toFixed(2) }</p>
-                <Link to='/cart/checkout'><button>Checkout</button></Link>
-                <button onClick={this.clearCart}>Clear Cart</button>
-            </div>
-        )
+            )
+        
     }
 }
 
