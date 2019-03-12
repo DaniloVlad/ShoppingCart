@@ -30,11 +30,20 @@ class Menu extends React.Component {
                             </div>
                             <MenuItems menu_items={this.state.menu_items} />
 
-                            <div className="nav-item submenu">
+                            <div className="nav-item submenu cart-submenu">
                                 <Link className="nav-link" to="/cart/view">Cart: {cart.length}</Link>
                                 <div className="dropdown">
                                     {
-                                    cart === undefined || cart.length === 0 ? <div></div> : JSON.stringify(cart)
+                                    cart === undefined || cart.length === 0 ? 
+                                        <div></div> 
+                                    : 
+                                        cart.map((value, index) => {
+                                           return (
+                                            <div className = "nav-item nav-link cart-item">
+                                                {value.product_name}
+                                            </div>
+                                           );
+                                        })
                                     }
                                 </div>
                             </div>
