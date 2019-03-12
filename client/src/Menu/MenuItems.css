@@ -8,6 +8,7 @@
 .nav-item {
   position: relative;
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
   background-color: #fff;
@@ -61,4 +62,9 @@
   display: flex;
   flex-direction: column;
   position: absolute;
+}
+
+.cart-submenu {
+  /* flex-shrink: 8; */
+  flex-grow: 8;
 }
