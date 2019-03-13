@@ -1,6 +1,6 @@
 const express = require('express');
 const order = require('./dashboard/order');
-
+const {getDetails} = require('../middlewares/accounts');
 
 var router = express.Router();
 
@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 router.use(order);
 
 //TO-DO:
-// router.use('/account'); 
+router.get('/account', getDetails); 
 // router.use(admin);
 
 module.exports = router;
