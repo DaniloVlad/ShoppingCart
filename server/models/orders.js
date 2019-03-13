@@ -30,6 +30,13 @@ const updateTokenByOrderId = (order_id, token) => {
     return execQuery(details);
 }
 
+const updateTransactionId = (order_id, trans_id) => {
+    var details = {
+        sql: "UPDATE `orders` SET `token` = ?, `status` = 1 WHERE `id` = ?",
+        data: [trans_id, order_id]
+    }
+    return execQuery(details);
+}
 const removeOrder = (order_id) => {
     var details = {
         sql: "DELETE FROM `orders` WHERE id = ?",
@@ -42,5 +49,6 @@ module.exports = {
     createOrder, 
     createOrderProducts,
     updateTokenByOrderId,
+    updateTransactionId,
     removeOrder
 };
