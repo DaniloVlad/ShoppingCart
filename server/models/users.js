@@ -18,6 +18,14 @@ const getUserDetails = (email, password) => {
     return execQuery(details);
 }
 
+const getOwnData = (user_id) => {
+    var details = {
+        sql: "SELECT * FROM users WHERE `id` = ?",
+        data: [user_id]
+    }
+    return execQuery(details);
+}
+
 const checkEmail = (email) => {
     var details = {
         sql: "SELECT email FROM users WHERE email = ?",
@@ -52,6 +60,7 @@ const updatePassword = (id, password) => {
 module.exports = {
     addUser,
     getUserDetails,
+    getOwnData,
     checkEmail,
     updateEmail,
     updateFirstAndLastName,
