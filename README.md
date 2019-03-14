@@ -10,7 +10,7 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 root@server:~$ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 root@server:~$ sudo apt-get install -y nodejs
 ```
-> Note: If node was installed using `apt (ie: sudo apt install nodejs)` then you must also run `sudo apt install npm` to install `npm`. Also if `apt` was used the installed executable will be called `nodejs` instead of `node`. The command to run the server would become `nodejs app` rather than `node app`
+> **Note**: If node was installed using `apt (ie: sudo apt install nodejs)` then you must also run `sudo apt install npm` to install `npm`. Also if `apt` was used the installed executable will be called `nodejs` instead of `node`. The command to run the server would become `nodejs app` rather than `node app`
 
 2) Configure and install mysql (This step will create your mysql user)
 
@@ -28,7 +28,7 @@ Welcome to MySQL monitor....
 mysql> CREATE DATABASE <database-name>;
 mysql> copy & past the schema.sql file here
 ```
-> Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
+> **Note**: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
 
 4) Install all the dependencies
 
