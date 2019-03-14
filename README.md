@@ -10,8 +10,7 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 root@server:~$ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 root@server:~$ sudo apt-get install -y nodejs
 ```
-> Note: If node was installed using `apt (ie: sudo apt install nodejs)` then you must also run `sudo apt install npm` to install `npm`.
-> Note: If node was installed using `apt` the install executable is called `nodejs` instead of `node`. The run command would become `nodejs app`
+> Note: If node was installed using `apt (ie: sudo apt install nodejs)` then you must also run `sudo apt install npm` to install `npm`. Also if `apt` was used the installed executable will be called `nodejs` instead of `node`. The command to run the server would become `nodejs app` rather than `node app`
 
 2) Configure and install mysql (This step will create your mysql user)
 
