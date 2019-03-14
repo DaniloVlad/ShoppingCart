@@ -5,7 +5,7 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 ### Install
 1) Configure and install mysql (This step will create your mysql user)
 
-```powershell
+```sh
 root@server:~$ sudo apt install mysql-server
 root@server:~$ mysql_secure_installation
 ```
