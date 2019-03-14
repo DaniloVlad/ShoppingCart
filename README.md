@@ -11,7 +11,7 @@ root@server:~$ mysql_secure_installation
 ```
 2) Import Mysql database schema (Replace username with database user: for security purposes avoid using root)
 
-```bash
+```sh-session
 root@server:~$ mysql -u <user-name> -p 
 Enter password:
 Welcome to MySQL monitor....
@@ -21,17 +21,17 @@ mysql> copy & past the schema.sql file here
 > Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
 
 3) Install all the dependencies
-```
+```sh-session
 root@server:~$ cd client && npm install
 root@server:~$ cd server && npm install
 ```
 4) Edit the `server/models/connection_template.js` file and update the host/port/user/password & change its name.
-```
+```sh-session
 root@server:~$ vi server/models/connection_template.js
 root@server:~$ mv server/models/connection_template.js server/model/connection.js
 ```
 ### run
-```
+```sh-session
 root@server:~$ cd client && npm start
 root@server:~$ cd server && node app
 ```
