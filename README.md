@@ -2,23 +2,23 @@
 Node/expressjs backend with react frontend. The sites checkout is fully integerated with paypal payments.  Only the webhook listener needs to be done for updating the db after purchase.
 
 ## Usage
-### install
+### Install
 1) Configure and install mysql (This step will create your mysql user)
 
-```
+```powershell
 root@server:~$ sudo apt install mysql-server
 root@server:~$ mysql_secure_installation
 ```
 2) Import Mysql database schema (Replace username with database user: for security purposes avoid using root)
 
-```
+```bash
 root@server:~$ mysql -u <user-name> -p 
 Enter password:
 Welcome to MySQL monitor....
 mysql> CREATE DATABASE <database-name>;
 mysql> copy & past the schema.sql file here
 ```
-Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
+> Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
 
 3) Install all the dependencies
 ```
