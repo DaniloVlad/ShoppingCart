@@ -3,13 +3,24 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 
 ## Usage
 ### Install
-1) Configure and install mysql (This step will create your mysql user)
+
+1) Install nodejs and npm (nodes package manager) on Ubuntu:
+
+```sh-session
+root@server:~$ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+root@server:~$ sudo apt-get install -y nodejs
+```
+> Note: If node was installed using `apt (ie: sudo apt install nodejs)` then you must also run `sudo apt install npm` to install `npm`.
+> Note: If node was installed using `apt` the install executable is called `nodejs` instead of `node`. The run command would become `nodejs app`
+
+2) Configure and install mysql (This step will create your mysql user)
 
 ```sh-session
 root@server:~$ sudo apt install mysql-server
 root@server:~$ mysql_secure_installation
 ```
-2) Import Mysql database schema (Replace username with database user: for security purposes avoid using root)
+
+3) Import Mysql database schema (Replace username with database user: for security purposes avoid using root)
 
 ```sh-session
 root@server:~$ mysql -u <user-name> -p 
@@ -20,17 +31,21 @@ mysql> copy & past the schema.sql file here
 ```
 > Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
 
-3) Install all the dependencies
+4) Install all the dependencies
+
 ```sh-session
 root@server:~$ cd client && npm install
 root@server:~$ cd server && npm install
 ```
-4) Edit the `server/models/connection_template.js` file and update the host/port/user/password & change its name.
+
+5) Edit the `server/models/connection_template.js` file and update the host/port/user/password & change its name.
+
 ```sh-session
 root@server:~$ vi server/models/connection_template.js
 root@server:~$ mv server/models/connection_template.js server/model/connection.js
 ```
-### run
+
+### Run
 ```sh-session
 root@server:~$ cd client && npm start
 root@server:~$ cd server && node app
