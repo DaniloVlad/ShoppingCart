@@ -49,6 +49,9 @@ root@server:~$ mv server/models/connection_template.js server/model/connection.j
 root@server:~$ cd client && npm start
 root@server:~$ cd server && node app
 ```
+For the total Javascript project line run the count_lines binary (Ubuntu). `./count_lines > line_count`
+![Check the details here](https://github.com/DaniloVlad/ShoppingCart/blob/master/line_count)
+
 ## Server
   1) Routes: Folder contains all the app routes.
   2) Middlewares: Folder contains all logic for handling various requests on the routes
