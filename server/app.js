@@ -1,30 +1,25 @@
 var express = require('express');
-// var mysql = require('mysql');
 var session = require('express-session');
-// var MySQLStore = require('express-mysql-session')(session);
+var connection = require('./models/connection');
+var MySQLStore = require('express-mysql-session')(session);
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
-// var connection = mysql.createPool({
-//     user: 'root',
-//     host: 'localhost',
-//     password: '',
-//     database: 'session_store'
-// })
+
 
 var api = require('./routes/api');
 var dasboard = require('./routes/dashboard');
 
 var app = express();
 
-// var sessionStore = MySQLStore({}, connection);
+var sessionStore = new MySQLStore({}, connection);
 
 var sessionOpts = {
     secret: "daniloseag", //make random string
     saveUninitialized: true,
     resave: false,
     cookie: {secure: false},
-    // store: sessionStore
+    store: sessionStore
 }
 
 
