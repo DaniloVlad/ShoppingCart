@@ -4,11 +4,13 @@ Node/expressjs backend with react frontend. The sites checkout is fully integera
 ## Usage
 ### install
 1) Configure and install mysql (This step will create your mysql user)
+
 ```
 root@server:~$ sudo apt install mysql-server
 root@server:~$ mysql_secure_installation
 ```
 2) Import Mysql database schema (Replace username with database user: for security purposes avoid using root)
+
 ```
 root@server:~$ mysql -u <user-name> -p 
 Enter password:
@@ -17,6 +19,7 @@ mysql> CREATE DATABASE <database-name>;
 mysql> copy & past the schema.sql file here
 ```
 Note: If you already have the database created use `mysql -u root -p <db-name> < server/models/schema.sql`
+
 3) Install all the dependencies
 ```
 root@server:~$ cd client && npm install
