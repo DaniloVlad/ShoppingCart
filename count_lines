@@ -1,0 +1,1 @@
+find . -not -path './*node_modules*' -not -path './client/build*' -name '*.js' | xargs wc -l
