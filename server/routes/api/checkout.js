@@ -1,6 +1,5 @@
-var express = require('express');
-var checkout = require('../../middlewares/checkout');
-
+const express = require('express');
+const checkout = require('../../middlewares/checkout');
 var router = express.Router();
 
 router.use('/checkout', checkout.preCheck);

@@ -1,7 +1,6 @@
-var express = require('express');
-
-var Cart = require('../../middlewares/cart');
-var Checkout = require('./checkout');
+const express = require('express');
+const Cart = require('../../middlewares/cart');
+const Checkout = require('./checkout');
 
 var router = express.Router();
 
