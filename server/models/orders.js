@@ -1,11 +1,11 @@
-var execQuery = require('./db');
+const execQuery = require('./db');
 
 
 const createOrder = (order_details) => {
-    var {name, address, apartment, state, city, zip, cost, shipping} = order_details;
+    var {uid, name, address, apartment, state, city, zip, cost, shipping} = order_details;
     var details = {
-        sql: "INSERT INTO `orders` (`name`, `address`, `apartment`, `state`, `city` , `zip`, `cost`, `shipping`) VALUES (?,?,?,?,?,?,?,?)",
-        data: [name, address, apartment, state, city, zip, cost, shipping]
+        sql: "INSERT INTO `orders` (`user_id`, `name`, `address`, `apartment`, `state`, `city` , `zip`, `cost`, `shipping`) VALUES (?, ?,?,?,?,?,?,?,?)",
+        data: [uid, name, address, apartment, state, city, zip, cost, shipping]
     }
     return execQuery(details);
 }
@@ -30,10 +30,10 @@ const updateTokenByOrderId = (order_id, token) => {
     return execQuery(details);
 }
 
-const updateTransactionId = (order_id, trans_id) => {
+const updateOrderCompleted = (order_id, trans_id, payer_id) => {
     var details = {
-        sql: "UPDATE `orders` SET `token` = ?, `status` = 1 WHERE `id` = ?",
-        data: [trans_id, order_id]
+        sql: "UPDATE `orders` SET `transaction_id` = ?, `payer_id` = ?, `status` = 1 WHERE `id` = ?",
+        data: [trans_id, payer_id, order_id]
     }
     return execQuery(details);
 }
@@ -49,6 +49,6 @@ module.exports = {
     createOrder, 
     createOrderProducts,
     updateTokenByOrderId,
-    updateTransactionId,
+    updateOrderCompleted,
     removeOrder
 };
