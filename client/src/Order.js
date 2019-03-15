@@ -13,7 +13,8 @@ class Order extends React.Component {
     }
 
     captureOrder() {   
-        var postData = this.state;
+        var tmpState = this.state;
+        let postData = {token: tmpState.token, payerID: tmpState.payerID};
         var settings = {
             method: 'POST',
             credentials: 'include',
@@ -23,7 +24,7 @@ class Order extends React.Component {
             body: JSON.stringify(postData)
         };
 
-        fetch('/api/dashboard/order', settings)
+        fetch('/api/order/complete', settings)
         .then(res => res.json())
         .then(resp => this.setState(resp));
     }
