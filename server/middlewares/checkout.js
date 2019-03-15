@@ -54,32 +54,43 @@ const createPayer = (req, res, next) => {
         if(address_2.length === 0) address_2 = null;
         req.payer = {};
         req.payer = new Payer(first_name, last_name, email, address_1, address_2, city, state, zip,  "US");
-        User.checkEmail(email)
-        .then((results) => {
-            if(results.length === 1) 
-                return next(); //email already registered
-            else {
-                let user = {first_name, last_name, email};
-                let tmpPass = crypto.randomBytes(16);  //email temp password to user
-                const hmac = crypto.createHmac('sha256', 'bighiddensecret');
-                user.password = hmac.update(tmpPass).digest('hex');
+        if(req.session.uid) {
+            req.payer.uid = req.session.uid;
+            next();
+        }
+        else {
+            User.checkEmail(email)
+            .then((results) => {
+                if(results.length === 1) {
+                    req.payer.uid = results[0].id;
+                    return next(); //email already registered
 
-                User.addUser(user)
-                .then((response) => {
-                    const emailString = `New account for wigx.\nEmail: ${email}\nPassword: ${tmpPass}`
-                    emailClient.sendMail(email, 'New Account!', emailString)
+                }
+                else {
+                    let user = {first_name, last_name, email};
+                    let tmpPass = crypto.randomBytes(16);  //email temp password to user
+                    const hmac = crypto.createHmac('sha256', 'bighiddensecret');
+                    user.password = hmac.update(tmpPass).digest('hex');
+    
+                    User.addUser(user)
                     .then((response) => {
-                        console.log(response);
-                        return next();  //email sent!
+                        req.payer.uid = response.insertId;
+                        const emailString = `New account for wigx.\nEmail: ${email}\nPassword: ${tmpPass}`
+                        emailClient.sendMail(email, 'New Account!', emailString)
+                        .then((response) => {
+                            console.log(response);
+                            return next();  //email sent!
+                        })
+                        .catch((err) => {
+                            console.log('couldnt send email :(')
+                            return next(); //still proceed with checkout
+                        })
                     })
-                    .catch((err) => {
-                        console.log('couldnt send email :(')
-                        return next(); //still proceed with checkout
-                    })
-                })
-                .catch(err => next('Some error occured!'));
-            }
-        })
+                    .catch(err => next('Some error occured!'));
+                }
+            })
+        }
+        
         
             
     }
@@ -92,6 +103,7 @@ const postCheckout = (req, res, next) => {
     let cost = subTotal(req.session.cart);
     let shipping = shippingCost(cost);
     let order = {
+        uid: req.payer.uid,
         name: payer.name.given_name+" "+payer.name.surname,
         address: payer.address.address_line_1,
         apartment: payer.address.address_line_2,
