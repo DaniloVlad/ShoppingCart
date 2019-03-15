@@ -1,7 +1,6 @@
 const crypto = require('crypto');
-
-var User = require('../models/users');
-var { testEmail } = require('./helper/cart');
+const User = require('../models/users');
+const { testEmail } = require('./helper/cart');
 
 const postLogin = (req, res, next) => {
     if(!req.body.email || !req.body.password || !testEmail(req.body.email))
@@ -83,6 +82,7 @@ const logout = (req, res, next) => {
     req.session.destroy();
     return res.json({suc: "Successfully logged out!"});
 }
+
 module.exports = {
     getRegister,
     postLogin,

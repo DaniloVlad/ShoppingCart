@@ -13,7 +13,6 @@ const getCategories = (req, res, next) => {
 }
 
 const getMenu = (req, res, next) => {
-
     Categories.getMenu()
     .then((results) => {
         Site()

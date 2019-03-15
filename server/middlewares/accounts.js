@@ -1,6 +1,5 @@
 const Users = require('../models/users');
 
-
 const getDetails = (req, res, next) => {
     Users.getOwnData(req.session.uid)
     .then((results) => {
@@ -9,6 +8,5 @@ const getDetails = (req, res, next) => {
     })
     .catch(err => next("Error: Couldn't load user data!"));
 };
-
 
 module.exports = {getDetails}

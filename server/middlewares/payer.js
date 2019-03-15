@@ -11,7 +11,6 @@
  * @param {string} postal_code - postal code
  * @param {string} country_code - 2-Character country code
  */
-
 function Payer(given_name, surname, email_address, address_line_1, address_line_2 = null, admin_area_2, admin_area_1, postal_code, country_code = "US") {  
     this.name = {
       given_name: given_name,
