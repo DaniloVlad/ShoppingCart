@@ -1,6 +1,5 @@
 const Product = require('../models/products');
 
-
 const getProduct = (req, res, next) => {
     Product.getProductAndVariantsById(req.params.id)
     .then(results => res.json({result: results[0]}))
@@ -8,6 +7,4 @@ const getProduct = (req, res, next) => {
 
 }
 
-module.exports = {
-    getProduct
-}
+module.exports = { getProduct }
