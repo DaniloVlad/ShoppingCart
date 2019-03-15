@@ -1,35 +1,35 @@
-   32 ./server/routes/api.js
-    9 ./server/routes/api/product.js
-   11 ./server/routes/api/checkout.js
-   15 ./server/routes/api/cart.js
+   37 ./server/routes/api.js
+    7 ./server/routes/api/product.js
+   33 ./server/routes/api/order.js
+   10 ./server/routes/api/checkout.js
+   14 ./server/routes/api/cart.js
     9 ./server/routes/api/types.js
     7 ./server/routes/api/categories.js
-   28 ./server/routes/dashboard.js
-   34 ./server/routes/dashboard/order.js
+   23 ./server/routes/dashboard.js
    23 ./server/routes/dashboard/admin.js
-   15 ./server/models/connection.js
-   67 ./server/models/users.js
-   22 ./server/models/db.js
+   14 ./server/models/connection.js
+   66 ./server/models/users.js
+   23 ./server/models/db.js
    63 ./server/models/products.js
    39 ./server/models/types.js
    11 ./server/models/site.js
-   48 ./server/models/categories.js
+   47 ./server/models/categories.js
    53 ./server/models/orders.js
-   17 ./server/models/connection_template.js
-   48 ./server/app.js
-   30 ./server/middlewares/payer.js
-   13 ./server/middlewares/accounts.js
-   16 ./server/middlewares/payment.js
-   12 ./server/middlewares/product.js
+   15 ./server/models/connection_template.js
+   39 ./server/app.js
+   29 ./server/middlewares/payer.js
+   11 ./server/middlewares/accounts.js
+   10 ./server/middlewares/payment.js
+    9 ./server/middlewares/product.js
    53 ./server/middlewares/states.js
    82 ./server/middlewares/order.js
-  153 ./server/middlewares/checkout.js
-   55 ./server/middlewares/paypal.js
+  165 ./server/middlewares/checkout.js
+   16 ./server/middlewares/paypal.js
    90 ./server/middlewares/register.js
   100 ./server/middlewares/cart.js
    34 ./server/middlewares/email.js
    19 ./server/middlewares/types.js
-   25 ./server/middlewares/categories.js
+   24 ./server/middlewares/categories.js
    29 ./server/middlewares/helper/cart.js
   175 ./client/src/Checkout.js
    58 ./client/src/Menu.js
@@ -42,7 +42,7 @@
    31 ./client/src/Cart/CartItem.js
    12 ./client/src/Cart/EmptyCart.js
    37 ./client/src/Menu/MenuItems.js
-   68 ./client/src/Order.js
+   69 ./client/src/Order.js
    87 ./client/src/App.js
     8 ./client/src/index.js
- 2159 total
+ 2102 total
