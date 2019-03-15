@@ -1,4 +1,4 @@
-var execQuery = require('./db');
+const execQuery = require('./db');
 
 const addProduct = (name, description, type_id, price, default_variant = null) => {
     var details = {

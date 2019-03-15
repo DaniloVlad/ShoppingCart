@@ -1,5 +1,4 @@
-var execQuery = require('./db');
-
+const execQuery = require('./db');
 
 const getSiteSettings = () => {
     var details = {
@@ -7,6 +6,5 @@ const getSiteSettings = () => {
     }
     return execQuery(details);
 }
-
 
 module.exports = getSiteSettings;

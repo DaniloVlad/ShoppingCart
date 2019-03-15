@@ -19,4 +19,5 @@ const execQuery = (details) => {
         });
     })
 }
+
 module.exports = execQuery;

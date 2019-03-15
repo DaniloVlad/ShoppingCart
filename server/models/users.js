@@ -1,5 +1,4 @@
-var execQuery = require('./db');
-
+const execQuery = require('./db');
 
 const addUser = (user) => {
     var {first_name, last_name, email, password} = user;
@@ -28,7 +27,7 @@ const getOwnData = (user_id) => {
 
 const checkEmail = (email) => {
     var details = {
-        sql: "SELECT email FROM users WHERE email = ?",
+        sql: "SELECT id FROM users WHERE email = ?",
         data: [email]
     }
     return execQuery(details);

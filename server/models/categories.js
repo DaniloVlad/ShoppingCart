@@ -1,4 +1,4 @@
-var execQuery = require('./db');
+const execQuery = require('./db');
 
 const getMenu = () => {
     var details = {
@@ -38,7 +38,6 @@ const updateCategoryPosition = (category_id, position) => {
     }
     return execQuery(details);
 }
-
 
 module.exports = {
     addCategory,
