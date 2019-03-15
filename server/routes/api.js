@@ -1,14 +1,19 @@
 const express = require('express');
-var cart = require('./api/cart');
-var categories = require('./api/categories');
-var checkout = require('./api/checkout');
-var product = require('./api/product');
-var types = require('./api/types');
-
-var Register = require('../middlewares/register');
-var Categories = require('../middlewares/categories');
+const dasboard = require('./dashboard');
+const order = require('./api/order');
+const cart = require('./api/cart');
+const categories = require('./api/categories');
+const checkout = require('./api/checkout');
+const product = require('./api/product');
+const types = require('./api/types');
+const Register = require('../middlewares/register');
+const Categories = require('../middlewares/categories');
 
 var router = express.Router();
+
+router.use('/order', order);
+
+router.use('/dashboard', dasboard);
 
 router.use('/products', types);
 
