@@ -12,25 +12,26 @@
    23 ./server/models/db.js
    63 ./server/models/products.js
    39 ./server/models/types.js
-   11 ./server/models/site.js
+    9 ./server/models/site.js
    47 ./server/models/categories.js
    53 ./server/models/orders.js
    15 ./server/models/connection_template.js
-   39 ./server/app.js
+   40 ./server/app.js
    29 ./server/middlewares/payer.js
    11 ./server/middlewares/accounts.js
-   10 ./server/middlewares/payment.js
     9 ./server/middlewares/product.js
    53 ./server/middlewares/states.js
    82 ./server/middlewares/order.js
-  165 ./server/middlewares/checkout.js
-   16 ./server/middlewares/paypal.js
-   90 ./server/middlewares/register.js
+  164 ./server/middlewares/checkout.js
+   89 ./server/middlewares/register.js
   100 ./server/middlewares/cart.js
    34 ./server/middlewares/email.js
    19 ./server/middlewares/types.js
    24 ./server/middlewares/categories.js
-   29 ./server/middlewares/helper/cart.js
+   12 ./server/middlewares/helper/password.js
+   24 ./server/middlewares/helper/cart.js
+   16 ./server/middlewares/helper/paypal_settings.js
+    4 ./server/middlewares/helper/filters.js
   175 ./client/src/Checkout.js
    58 ./client/src/Menu.js
   143 ./client/src/Product.js
@@ -45,4 +46,4 @@
    69 ./client/src/Order.js
    87 ./client/src/App.js
     8 ./client/src/index.js
- 2102 total
+ 2100 total
