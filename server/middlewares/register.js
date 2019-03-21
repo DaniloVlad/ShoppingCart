@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const User = require('../models/users');
-const { testEmail } = require('./helper/cart');
+const { testEmail } = require('./helper/filters');
+const { hashPassword } = require('./helper/password');
 
 const postLogin = (req, res, next) => {
     if(!req.body.email || !req.body.password || !testEmail(req.body.email))
@@ -8,8 +9,7 @@ const postLogin = (req, res, next) => {
     else {
         let {email, password} = req.body;
         //hash the entered password
-        const hmac = crypto.createHmac('sha256', 'bighiddensecret');
-        const hmacPass = hmac.update(password).digest('hex');        
+        const hmacPass = hashPassword(password);        
         console.log('PASSWORD HMAC: '+hmacPass);
         //only returns if email & password are correct
         User.getUserDetails(email, hmacPass)
@@ -62,8 +62,7 @@ const postRegister = (req, res, next) => {
                 console.log('Email is open');
                 var user = {first_name, last_name, email, password};
                 //only store the passwords signature
-                const hmac = crypto.createHmac('sha256', 'bighiddensecret');
-                user.password = hmac.update(password).digest('hex');
+                user.password = hashPassword(password);
                 User.addUser(user)
                 .then((results2) => {
                     req.session.uid = results2.insertId;
