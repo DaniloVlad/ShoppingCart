@@ -1,7 +1,8 @@
 const crypto = require('crypto');
-const {shippingCost, subTotal, testEmail, roundPrice} = require('./helper/cart');
-const paypalOrder = require('./order');
-const paypalCapture = require('./payment');
+const {shippingCost, subTotal, roundPrice} = require('./helper/cart');
+const { testEmail } = require('./helper/filters');
+const { genTempPassword, hashPassword } = require('./helper/password');
+const paypalOrder = require('./order').captureOrder;
 const state_codes = require('./states');
 const {Payer} = require('./payer');
 const Orders = require('../models/orders');
@@ -68,10 +69,8 @@ const createPayer = (req, res, next) => {
                 }
                 else {
                     let user = {first_name, last_name, email};
-                    let tmpPass = crypto.randomBytes(16);  //email temp password to user
-                    const hmac = crypto.createHmac('sha256', 'bighiddensecret');
-                    user.password = hmac.update(tmpPass).digest('hex');
-    
+                    let tmpPass = genTempPassword();  //email temp password to user
+                    user.password = hashPassword(tmpPass);
                     User.addUser(user)
                     .then((response) => {
                         req.payer.uid = response.insertId;
