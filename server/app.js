@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const MySQLStore = require('express-mysql-session')(session);
 const connection = require('./models/connection');
 const api = require('./routes/api');
+
 //Create app
 const app = express();
 //Configure session options
