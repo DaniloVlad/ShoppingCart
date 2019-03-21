@@ -1,5 +1,5 @@
 const express = require('express');
-const captureOrder = require('../../middlewares/payment');
+const { captureOrder } = require('../../middlewares/order');
 const Order = require('../../models/orders');
 var router = express.Router();
 
@@ -20,8 +20,8 @@ router.post('/complete', (req, res, next) => {
         + " Transaction id: "+transaction_id 
         + " Status: " + status);
         if(status === 'COMPLETED') {
+            //empty cart
             req.session.cart = [];
-            console.log('Updating order status');
             Order.updateOrderCompleted(order_id, transaction_id, payer_id)
             .then(results2 => res.json({succ: "Successfully captured order!"}))
             .catch(err => next('Error: Couldnt capture order!'))
