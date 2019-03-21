@@ -1,14 +1,15 @@
 const paypal = require('@paypal/checkout-server-sdk');
+const client = require('./helper/paypal_settings').client;
 
-/**
- *
- * PayPal HTTP client dependency
- */
-const client = require('./paypal').client;
+const captureOrder = (orderID) => {
+  //create capture order request for the order_id
+  const request = new paypal.orders.OrdersCaptureRequest(orderID);
+  request.requestBody({});
+  return client().execute(request);
+}
 
 const createOrder = (payer, order) => {
     var items = []
-    // console.log(JSON.stringify(order))
     for(x in order.products) {
       items.push({
         name: order.products[x].product_name,
@@ -22,12 +23,11 @@ const createOrder = (payer, order) => {
         category: "PHYSICAL_GOODS"
       })
     }
-    // console.log(items);
-    // console.log(order)
+
     //set up Order request
     const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
-  
+    //create request body
     request.requestBody({
       intent: 'CAPTURE',
       purchase_units: [{
@@ -75,9 +75,9 @@ const createOrder = (payer, order) => {
         }
       }
     });
-  
+    //execute the request
     return client().execute(request);
      
   }
   
-module.exports = createOrder;
+module.exports = {createOrder, captureOrder};
