@@ -4,7 +4,6 @@ const getMenu = () => {
     var details = {
         sql:"SELECT ct.name, JSON_ARRAYAGG(t.name) as subCategories FROM categories ct LEFT JOIN product_types t ON ct.id = t.category_id GROUP BY ct.id"
     }
-    console.log('getting menu...')
     return execQuery(details);
 }
 
