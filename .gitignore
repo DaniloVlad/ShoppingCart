@@ -2,3 +2,4 @@ server/.vscode/
 server/models/connection.js
 node_modules/
 server/node_modules/
+server/middlewares/helper/paypal_settings.js
