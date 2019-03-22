@@ -44,6 +44,13 @@ root@server:~$ vi server/models/connection_template.js
 root@server:~$ mv server/models/connection_template.js server/model/connection.js
 ```
 
+6) Edit the `server/middlewares/helper/paypal_settings_template.js` file and update the CLEINT-ID/SEED & change its name.
+
+```sh-session
+root@server:~$ vi server/middlewares/helper/paypal_settings_template.js
+root@server:~$ mv server/middlewares/helper/paypal_settings_template.js server/middlewares/helper/paypal_settings.js
+```
+
 ### Run
 ```sh-session
 root@server:~$ cd client && npm start
