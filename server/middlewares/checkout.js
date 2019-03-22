@@ -1,4 +1,3 @@
-const crypto = require('crypto');
 const {shippingCost, subTotal, roundPrice} = require('./helper/cart');
 const { testEmail } = require('./helper/filters');
 const { genTempPassword, hashPassword } = require('./helper/password');
