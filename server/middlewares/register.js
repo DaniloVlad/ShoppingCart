@@ -1,6 +1,5 @@
-const crypto = require('crypto');
 const User = require('../models/users');
-const { testEmail } = require('./helper/filters');
+const { testEmail, testNameField } = require('./helper/filters');
 const { hashPassword } = require('./helper/password');
 
 const postLogin = (req, res, next) => {
@@ -38,16 +37,14 @@ const postRegister = (req, res, next) => {
     email = email.toLowerCase();
     first_name = first_name.toLowerCase();
     last_name = last_name.toLowerCase();
-    //true => if string contains symbols not between a-z  false => string contains only a-z
-    const lowerAlph = /[^a-z]/g;
     let err = [];
     if(!email || !first_name || !last_name || !password)
         return next('Please fill in all the fields!');
     if(email.length === 0 || email.length > 254)
         err.push('Invalid email!');
-    if(first_name.length === 0 || first_name.length > 140 || lowerAlph.test(first_name))
+    if(first_name.length === 0 || first_name.length > 140 || testNameField(first_name))
         err.push('Invalid first name!');
-    if(last_name.length === 0 || last_name.last_name > 140 || lowerAlph.test(last_name));
+    if(last_name.length === 0 || last_name.last_name > 140 || testNameField(last_name));
         err.push('Invalid last name!');
     
     if(err.length > 0) 
