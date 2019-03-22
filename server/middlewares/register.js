@@ -33,45 +33,27 @@ const getRegister = (req, res, next) => {
 }
 
 const postRegister = (req, res, next) => {
-    let {email, first_name, last_name, password} = req.body;
-    email = email.toLowerCase();
-    first_name = first_name.toLowerCase();
-    last_name = last_name.toLowerCase();
-    let err = [];
-    if(!email || !first_name || !last_name || !password)
-        return next('Please fill in all the fields!');
-    if(email.length === 0 || email.length > 254)
-        err.push('Invalid email!');
-    if(first_name.length === 0 || first_name.length > 140 || testNameField(first_name))
-        err.push('Invalid first name!');
-    if(last_name.length === 0 || last_name.last_name > 140 || testNameField(last_name));
-        err.push('Invalid last name!');
-    
-    if(err.length > 0) 
-        return next(err);
+    User.checkEmail(email)
+    .then((results) => {
+        if(results !== undefined && results.length !== 0) 
+            return next('Email already taken!')
+        else {
+            console.log('Email is open');
+            var user = {first_name, last_name, email, password};
+            //only store the passwords signature
+            user.password = hashPassword(password);
+            User.addUser(user)
+            .then((results2) => {
+                req.session.uid = results2.insertId;
+                req.session.email = email;
+                req.session.name = first_name;
+                return res.redirect('/dashboard/');
+            })
+            // .catch(err => next('Error: Couldnt create user!'))
+        }
+    })
+    .catch(err => next('An error occured'))
 
-    else {
-        User.checkEmail(email)
-        .then((results) => {
-            if(results !== undefined && results.length !== 0) 
-                return next('Email already taken!')
-            else {
-                console.log('Email is open');
-                var user = {first_name, last_name, email, password};
-                //only store the passwords signature
-                user.password = hashPassword(password);
-                User.addUser(user)
-                .then((results2) => {
-                    req.session.uid = results2.insertId;
-                    req.session.email = email;
-                    req.session.name = first_name;
-                    return res.redirect('/dashboard/');
-                })
-                .catch(err => next('Error: Couldnt create user!'))
-            }
-        })
-        .catch(err => next('An error occured'))
-    }
 }
 
 const logout = (req, res, next) => {

@@ -6,7 +6,8 @@ const categories = require('./api/categories');
 const checkout = require('./api/checkout');
 const product = require('./api/product');
 const types = require('./api/types');
-const Register = require('../middlewares/register');
+const { postLoginFilter, postRegisterFilter} = require('../filters/register');
+const {getRegister, postRegister, postLogin, logout} = require('../middlewares/register');
 const Categories = require('../middlewares/categories');
 
 var router = express.Router();
@@ -25,13 +26,13 @@ router.use('/category', categories);
 
 router.use('/checkout', checkout);
 
-router.get(['/register', '/login'], Register.getRegister);
+router.get(['/register', '/login'], getRegister);
 
-router.post('/login', Register.postLogin);
+router.post('/login', [postLoginFilter, postLogin]);
 
-router.post('/register', Register.postRegister);
+router.post('/register', [postRegisterFilter, postRegister]);
 
-router.get('/logout', Register.logout);
+router.get('/logout', logout);
 
 router.get('/', Categories.getMenu);
 
